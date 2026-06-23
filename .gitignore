@@ -1,0 +1,16 @@
+# 虚拟环境
+.venv/
+
+# 生成产物（临时，可重新生成）
+output/
+
+# Python缓存
+__pycache__/
+*.pyc
+
+# WorkBuddy项目数据
+.workbuddy/
+
+# 系统文件
+Thumbs.db
+.DS_Store
