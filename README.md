@@ -455,10 +455,9 @@ A: 使用 `--genre` 参数切换体裁配置：`python check_story.py output/sto
 A: 不会。风格对齐只学 corpus 的统计分布（句长/标点/短句比区间），不抄字面文本。16 字零匹配审计是生成的强制兜底关卡。
 
 ## 致谢
-- **[oh-story-claudecode-main](https://github.com)** — Claude Code 网文工具箱。借鉴了 80 篇方法学卡（题材卡/情节情绪/角色/钩子/解构/短篇）、扫榜脚本（7 平台采集）、拆书工具（txt→骨架分析）。
+- **[oh-story-claudecode-main](https://github.com)** — Claude Code 网文工具箱。 借鉴了 80 篇方法学卡（题材卡/情节情绪/角色/钩子/解构/短篇）、扫榜脚本（7 平台采集）、拆书工具（txt→骨架分析）。
 - **[jenna-russell/storyscope](https://github.com/jenna-russell/storyscope)**（MIT） — 叙事鉴识：AI vs 人类小说。借鉴了 304 维特征分类法、XGBoost 人机判别思路，落地为本地三交叉终判层（叙事层）。
-- 
-感谢真诚、友善、团结、专业的 [LinuxDo 社区](https://linux.do/latest)，让我学到很多 AI 相关的知识和玩法。
+- 感谢真诚、友善、团结、专业的 [LinuxDo 社区](https://linux.do/latest)，让我学到很多 AI 相关的知识和玩法。
 
 > LinuxDo — 学 AI，上 L 站
 
