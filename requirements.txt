@@ -1,0 +1,3 @@
+jieba
+# Bloom 反查 (tools/bloom_guard.py) 使用 Python 标准库实现 (滚动双哈希 + bitarray)，
+# 零第三方依赖、零模型，无需 pybloom-live。

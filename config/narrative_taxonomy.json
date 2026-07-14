@@ -1,0 +1,175 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "中文叙事话语特征词典种子（StoryScope 10 维 taxonomy 映射蓝本，离线手写，零下载）",
+    "source": "StoryScope / NarraBench 10 维（Agents/Social Networks/Style/Plot/Setting/Events/Revelation/Situatedness/Temporal Structure/Perspective）",
+    "note": "14 个 P0 可规则化；3 个 degraded（P2 再补全，P0 先给占位 + 词典近似）。字段只存类型标签/统计词频，不存 corpus 字面（红线）。",
+    "dims_zh": {
+      "Agents": "角色",
+      "Social Networks": "社交网络",
+      "Style": "风格",
+      "Plot": "情节",
+      "Setting": "场景",
+      "Events": "事件",
+      "Revelation": "揭示",
+      "Situatedness": "情境嵌入",
+      "Temporal Structure": "时间结构",
+      "Perspective": "视角"
+    }
+  },
+  "features": [
+    {
+      "name": "plot_linearity",
+      "dim": "Plot",
+      "type": "scale",
+      "computable": "rule",
+      "description": "情节线性度 = 1 - normalize(subplot_count)。副线越多越非线性（0=高度多线，1=纯线性）。",
+      "range": [0, 1],
+      "default": 0.7
+    },
+    {
+      "name": "subplot_count",
+      "dim": "Plot",
+      "type": "ordinal",
+      "computable": "rule",
+      "description": "支线/视角切换计数（『与此同时』『话分两头』『另一边』等标记命中数，封顶）。",
+      "range": [0, 10],
+      "default": 1
+    },
+    {
+      "name": "ending_type",
+      "dim": "Plot",
+      "type": "categorical",
+      "computable": "rule",
+      "description": "结尾类型：大团圆/惨胜/开放式/悲剧/其他（按结尾 300 字标记判定）。",
+      "range": ["大团圆", "惨胜", "开放式", "悲剧", "其他"],
+      "default": "其他"
+    },
+    {
+      "name": "conflict_structure",
+      "dim": "Plot",
+      "type": "categorical",
+      "computable": "rule",
+      "description": "冲突结构：线性/倒因果/中点爆炸/其他（『突变』『真相是』等标记判定）。",
+      "range": ["线性", "倒因果", "中点爆炸", "其他"],
+      "default": "线性"
+    },
+    {
+      "name": "temporal_complexity",
+      "dim": "Temporal Structure",
+      "type": "scale",
+      "computable": "rule",
+      "description": "时间跳跃复杂度（『三年后』『时光荏苒』等时间跳跃标记密度归一）。",
+      "range": [0, 1],
+      "default": 0.3
+    },
+    {
+      "name": "flashback_count",
+      "dim": "Temporal Structure",
+      "type": "ordinal",
+      "computable": "rule",
+      "description": "闪回次数（『回想』『当年』『记忆中』等标记命中数，封顶）。",
+      "range": [0, 15],
+      "default": 0
+    },
+    {
+      "name": "foreshadow_density",
+      "dim": "Revelation",
+      "type": "scale",
+      "computable": "rule",
+      "description": "悬念/伏笔密度（『殊不知』『谁料』『埋下伏笔』等标记密度归一）。",
+      "range": [0, 1],
+      "default": 0.3
+    },
+    {
+      "name": "protagonist_moral_ambiguity",
+      "dim": "Agents",
+      "type": "scale",
+      "computable": "rule",
+      "description": "主角道德模糊度（利他标记与利己/伤害标记并存程度；越高越道德模糊）。",
+      "range": [0, 1],
+      "default": 0.3
+    },
+    {
+      "name": "emotion_arc_variance",
+      "dim": "Style",
+      "type": "scale",
+      "computable": "rule",
+      "description": "情绪弧方差（按段情绪词密度方差；人类有起伏，AI 常平直）。取值 ≥0。",
+      "range": [0, 3],
+      "default": 0.5
+    },
+    {
+      "name": "pov_consistency",
+      "dim": "Perspective",
+      "type": "scale",
+      "computable": "rule",
+      "description": "视角一致性（第一/第三人称混用越少 + 显式视角切换越少 → 越高）。",
+      "range": [0, 1],
+      "default": 0.8
+    },
+    {
+      "name": "pacing_variability",
+      "dim": "Style",
+      "type": "scale",
+      "computable": "rule",
+      "description": "节奏变化率（段落长度变异系数 std/mean；复用 anti_pattern EI P2 思路）。取值 ≥0。",
+      "range": [0, 3],
+      "default": 0.6
+    },
+    {
+      "name": "agency_complexity",
+      "dim": "Agents",
+      "type": "ordinal",
+      "computable": "rule",
+      "description": "施事复杂度 = 命名角色数（复用 check_story 姓氏分级提取思路，轻量版）。",
+      "range": [0, 20],
+      "default": 3
+    },
+    {
+      "name": "event_escalation_slope",
+      "dim": "Events",
+      "type": "scale",
+      "computable": "rule",
+      "description": "事件升级斜率（冲突关键词密度沿文序的线性拟合斜率，正=升级，负=回落，可越界）。",
+      "range": [-1, 1],
+      "default": 0.0
+    },
+    {
+      "name": "setting_concreteness",
+      "dim": "Setting",
+      "type": "scale",
+      "computable": "rule",
+      "description": "场景具体度（地点/感官/空间指示词密度归一；越具体越高）。",
+      "range": [0, 1],
+      "default": 0.6
+    },
+    {
+      "name": "theme_explicitness",
+      "dim": "Style",
+      "type": "scale",
+      "computable": "degraded",
+      "description": "【degraded·P2补全】主题明示度：词典近似（『意味着』『象征』『隐喻』等议论标记密度）。P0 先给占位/近似。",
+      "range": [0, 1],
+      "default": 0.5
+    },
+    {
+      "name": "intertextuality",
+      "dim": "Revelation",
+      "type": "scale",
+      "computable": "degraded",
+      "description": "【degraded·P2补全】互文度：词典近似（『古人云』『《》』『典故』等引用标记密度）。P0 先给占位/近似。",
+      "range": [0, 1],
+      "default": 0.2
+    },
+    {
+      "name": "social_network_density",
+      "dim": "Social Networks",
+      "type": "scale",
+      "computable": "degraded",
+      "description": "【degraded·P2补全】社交网络密度：词典近似（『朋友』『师徒』『盟友』等关系标记密度）。P0 先给占位/近似。",
+      "range": [0, 1],
+      "default": 0.4
+    }
+  ]
+}

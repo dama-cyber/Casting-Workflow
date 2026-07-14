@@ -1,0 +1,149 @@
+{
+  "_meta": {
+    "version": "2.0",
+    "description": "反模式生成配方配置 - 基于指纹互消的对偶系统",
+    "principle": "公因子 = 类型公式 = 读者预期 → 反转公因子 = 最大化预期违背 = 爽感"
+  },
+
+  "recipes": {
+    "轻度反模式": {
+      "ei_target": "40-55",
+      "description": "保留类型框架,在关键节点反转1-2个公因子",
+      "operators": ["structure_invert:0.3", "emotion_polarize:0.2"],
+      "fusion_mode": "hybrid",
+      "stages": {
+        "脑洞": {"structure_invert": 0.3},
+        "人设": {"character_subvert": 0.2},
+        "大纲": {"structure_invert": 0.3},
+        "开篇": {"emotion_polarize": 0.2},
+        "正文": {"emotion_polarize": 0.2},
+        "续写": {"character_subvert": 0.2}
+      }
+    },
+
+    "中度反模式": {
+      "ei_target": "55-70",
+      "description": "反转3-4个公因子,引入因果倒置和角色突变",
+      "operators": ["structure_invert:0.5", "emotion_polarize:0.4", "causality_invert:0.3", "character_subvert:0.3"],
+      "fusion_mode": "anti_dominant",
+      "stages": {
+        "脑洞": {"structure_invert": 0.5, "causality_invert": 0.3},
+        "人设": {"character_subvert": 0.4},
+        "大纲": {"structure_invert": 0.5},
+        "细纲": {"causality_invert": 0.4},
+        "开篇": {"emotion_polarize": 0.4, "structure_invert": 0.3},
+        "正文": {"emotion_polarize": 0.4, "causality_invert": 0.3},
+        "续写": {"character_subvert": 0.3, "causality_invert": 0.3},
+        "扩写": {"info_bomb": 0.3, "emotion_polarize": 0.3}
+      }
+    },
+
+    "重度反模式": {
+      "ei_target": "70-85",
+      "description": "全维度反转,叙事结构碎片化,因果链断裂重组",
+      "operators": ["structure_invert:0.8", "emotion_polarize:0.6", "causality_invert:0.7", "character_subvert:0.6", "info_bomb:0.5"],
+      "fusion_mode": "pure_anti",
+      "stages": {
+        "脑洞": {"structure_invert": 0.8, "causality_invert": 0.7},
+        "人设": {"character_subvert": 0.7},
+        "大纲": {"structure_invert": 0.8, "causality_invert": 0.5},
+        "细纲": {"causality_invert": 0.7, "info_bomb": 0.5},
+        "开篇": {"emotion_polarize": 0.6, "structure_invert": 0.5},
+        "正文": {"emotion_polarize": 0.6, "causality_invert": 0.5, "info_bomb": 0.4},
+        "优化": {"causality_invert": 0.4, "info_bomb": 0.4},
+        "续写": {"character_subvert": 0.6, "causality_invert": 0.5},
+        "扩写": {"info_bomb": 0.5, "emotion_polarize": 0.5}
+      }
+    },
+
+    "极限反模式": {
+      "ei_target": "85-100",
+      "description": "所有公因子全部反转,叙事完全重构,追求极致爽感冲击",
+      "operators": ["structure_invert:1.0", "emotion_polarize:0.9", "causality_invert:1.0", "character_subvert:0.9", "info_bomb:0.8"],
+      "fusion_mode": "pure_anti",
+      "stages": {
+        "脑洞": {"structure_invert": 1.0, "causality_invert": 1.0, "character_subvert": 0.8},
+        "人设": {"character_subvert": 1.0, "emotion_polarize": 0.6},
+        "大纲": {"structure_invert": 1.0, "causality_invert": 0.8, "info_bomb": 0.6},
+        "细纲": {"causality_invert": 1.0, "info_bomb": 0.8, "structure_invert": 0.6},
+        "开篇": {"emotion_polarize": 0.9, "structure_invert": 0.8, "info_bomb": 0.6},
+        "正文": {"emotion_polarize": 0.9, "causality_invert": 0.8, "info_bomb": 0.7, "character_subvert": 0.6},
+        "优化": {"causality_invert": 0.6, "info_bomb": 0.6, "emotion_polarize": 0.5},
+        "续写": {"character_subvert": 0.9, "causality_invert": 0.8, "structure_invert": 0.5},
+        "扩写": {"info_bomb": 0.8, "emotion_polarize": 0.8, "causality_invert": 0.5}
+      }
+    }
+  },
+
+  "operator_params": {
+    "structure_invert": {
+      "modes": ["reverse_chronology", "circular", "fragmented", "parallel_timeline", "midpoint_explosion"],
+      "default_mode": "midpoint_explosion",
+      "description": "叙事结构反转: 倒序/环形/碎片/平行时间线/中点爆炸"
+    },
+    "emotion_polarize": {
+      "cliff_threshold": 0.7,
+      "max_buildup_sentences": 20,
+      "crash_sentences": 2,
+      "description": "情绪极化: 长蓄力(20句)→断崖崩溃(2句)→反弹"
+    },
+    "causality_invert": {
+      "modes": ["effect_first", "quantum_cause", "anti_cause", "nested_reveal"],
+      "default_mode": "effect_first",
+      "description": "因果反转: 结果先现/量子因果/反因果/嵌套揭示"
+    },
+    "character_subvert": {
+      "collapse_points": ["midpoint", "climax", "resolution"],
+      "default_collapse": "climax",
+      "recovery_mode": "hardened",
+      "description": "角色颠覆: 关键场景人设崩溃→重新硬化"
+    },
+    "info_bomb": {
+      "blackhole_ratio": 0.3,
+      "explosion_ratio": 0.5,
+      "description": "信息炸弹: 30%篇幅信息黑洞→50%篇幅信息爆炸"
+    }
+  },
+
+  "common_factor_catalog": {
+    "description": "公因子目录 - 从5源文本提取的类型公式,反模式系统将其逐一反转",
+    "factors": {
+      "narrative_structure": {
+        "common": "三幕式: 开端(平静)→发展(冲突)→高潮(爆发)→结局(解决)",
+        "anti": "中点爆炸: 从高潮开始→倒叙回溯→二次反转→终极真相"
+      },
+      "character_arc": {
+        "common": "成长弧: 弱→遇机→变强→碾压→登顶",
+        "anti": "降级弧: 强→遭创→坠落→低谷觉醒→以弱胜强"
+      },
+      "emotion_rhythm": {
+        "common": "渐强式: 平淡→紧张→爆发→余韵",
+        "anti": "断崖式: 蓄力(20句)→断崖(2句)→寂静(3句)→终极爆发"
+      },
+      "causality_chain": {
+        "common": "线性因果: 原因A→结果B→原因C→结果D",
+        "anti": "倒因果: 结果D先现→回溯原因C→揭示B→颠覆A"
+      },
+      "info_distribution": {
+        "common": "均匀分布: 每段信息量相近",
+        "anti": "极化分布: 信息黑洞(30%)→信息爆炸(50%)→信息寂静(20%)"
+      },
+      "betrayal_pattern": {
+        "common": "盟友背叛→主角受害→复仇成功",
+        "anti": "主角是背叛者→被反噬→在背叛中觉醒→反向救赎"
+      },
+      "revenge_pattern": {
+        "common": "直接复仇→碾压敌人→大仇得报",
+        "anti": "不复仇,而是反向救赎/以德报怨后反转"
+      },
+      "power_system": {
+        "common": "金手指→升级→碾压→更高境界",
+        "anti": "金手指→失控→降级→以弱御强→金手指重生"
+      },
+      "ending_type": {
+        "common": "大团圆/碾压式胜利",
+        "anti": "惨胜/代价式胜利/胜利中的毁灭"
+      }
+    }
+  }
+}

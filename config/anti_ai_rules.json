@@ -1,0 +1,54 @@
+{
+  "_comment": "qiaomu 借鉴·去 AI 味报告词典与阈值（方向 A）。纯正则零依赖；只存通用词典/正则/阈值，不存 corpus 字面原文（红线）。正则与阈值照搬 qiaomu evaluate_story.py 真实实现（主理人裁决：方向 E 语料标定留后续增量）。引号适配：本项目对话用「」而非 qiaomu 的\"\"，软 AIISH 信号在「…」内豁免。",
+  "version": "qiaomu-ai-flavor-v1",
+  "meta": {
+    "source": "qiaomu evaluate_story.py（思路借鉴，真实正则/阈值照搬）",
+    "default_on": true
+  },
+  "dictionaries": {
+    "abstract_terms": ["需求", "流程", "系统", "规范", "策略", "机制", "能力", "价值", "痛点", "闭环", "效率", "协同", "模型", "方案", "架构", "规则"],
+    "scene_markers": ["会议室", "门口", "窗", "雨", "灯", "桌", "屏幕", "手机", "街", "车", "手", "眼", "血", "杯", "纸", "门", "椅", "走廊"],
+    "hook_markers": ["死", "血", "笑", "哭", "错", "债", "骂", "停", "断", "丢", "骗", "杀", "输", "滚", "赔", "取消"]
+  },
+  "aiish_patterns": [
+    {"name": "not_x_but_y", "pattern": "不是[^。！？\\n]{0,40}而是"},
+    {"name": "not_about_but_about", "pattern": "不在于[^。！？\\n]{0,40}在于"},
+    {"name": "summary_ending", "pattern": "总之|综上所述|总而言之"},
+    {"name": "teaching_transition", "pattern": "关键在于|值得注意的是|让我们|想象一个世界"},
+    {"name": "not_only_more", "pattern": "这不仅[^。！？\\n]{0,40}更是"},
+    {"name": "meaning_slogan", "pattern": "这就是[^。！？\\n]{0,30}的意义"},
+    {"name": "bland_tone", "pattern": "声音不大[^，。]?却带着|语气毫无波澜|平静无波"},
+    {"name": "he_she_knows", "pattern": "(他|她)知道[^。！？\\n]{0,20}"},
+    {"name": "with_carry", "pattern": "，带着[^。！？\\n]{0,15}"},
+    {"name": "chapter_forecast", "pattern": "(他|她)不知道的是"},
+    {"name": "preachy_finally", "pattern": "终于明白|这才意识到|这一刻|从这一刻开始|原来如此"},
+    {"name": "preachy_destiny", "pattern": "属于[^，。]{1,8}的反击才刚刚开始|命运(齿轮|棋局|獠牙|改写|安排)"},
+    {"name": "forbidden_template", "pattern": "取而代之的是|淬了[^，。]{1,6}|显得（有些）[^，。]{1,6}|（浑身）散发着一股[^，。]{1,8}气息"}
+  ],
+  "ambiguous_opening": [
+    {"name": "dead_person_walking", "pattern": "死人[^。！？\\n]{0,12}(走|进|来|到)"},
+    {"name": "corpse_walking", "pattern": "尸体[^。！？\\n]{0,12}(走|进|来|到)"},
+    {"name": "dead_speaking", "pattern": "(死人|死者|尸体)[^。！？\\n]{0,12}(说|问|喊|开口)"}
+  ],
+  "opening_exemptions": ["那一年", "那年", "多年以后", "时光倒流", "梦境", "梦回", "梦里", "醒来", "忆起", "忆及", "恍惚", "记得那年", "一晃", "往事", "旧年", "从前", "彼时", "彼年", "恍如隔世", "梦醒", "昨夜梦", "记忆里", "记忆中"],
+  "thresholds": {
+    "dialogue_min": 4,
+    "dialogue_ratio_min": 0.0,
+    "abstract_abs_max": 12,
+    "scene_min": 8,
+    "hook_zero_alarm": true,
+    "aiish_not_x_but_y_min": 1,
+    "aiish_total_min": 1,
+    "dash_max": 3,
+    "ambiguous_min": 1
+  },
+  "quote_exemption": {
+    "enabled": true,
+    "quote_pairs": [["「", "」"], ["“", "”"]],
+    "exempt_groups": ["aiish"],
+    "note": "软 AIISH 信号（not_x_but_y / not_about_but_about / teaching_transition / not_only_more / meaning_slogan / summary_ending）在「…」内豁免：匹配前把「…」内部替换为等长空格再跑软模式。banned 硬项（—— / 不是X是Y / 格式化比喻 / 软副词 / 群像套路词）不豁免（裁决 4）。"
+  },
+  "soft_warn_terms": ["突然", "陡然", "骤然", "猛然", "好像", "似乎"],
+  "_comment_soft_warn": "二级突转词作 WARN 软信号（非硬禁）；猛地/瞬间/忽然沿用 COMMON.md 硬禁不二次落地；保留真实突发/口语可保留例外（裁决 2）。",
+  "_qiaomu_E_calibration": "2026-07-10 据 data/_quality_baseline.json(11030篇) 标定：dialogue_ratio_min=0.06 时人类触发率 79.8%、p10=0.0(中位数即0,指标退化)→置0禁用该 WARN（仅供展示）。红线：未改 fusion.py；安全项(tell等)未收紧。"
+}

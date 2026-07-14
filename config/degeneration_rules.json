@@ -1,0 +1,25 @@
+{
+  "_comment": "退化检测增量（纯正则零模型）。tier1=正文逃逸硬证据(blocking→issues)；tier2=叙事层可能合法(advisory+引号豁免)；repeat/truncate/placeholder=退化检测(blocking)。不泄 corpus 字面（红线）。截断检测末字符允许「…」合法结尾（本项目对话中断用「……」），仅清「--」/「—」独立破折号（已由 banned.json 的「——」覆盖）。占位符「未完待续」由第六节开放式结局已管，第十三节去重不重复 issue。",
+  "version": "deslop-v1",
+  "engineering_leak": {
+    "tier1": ["细纲", "情节点", "卷纲", "功能标签", "目标情绪", "字数目标", "章首钩子", "章尾钩子"],
+    "tier2": ["第[一二三四五六七八九十百零0-9]+章", "本章", "这一章", "上一章", "下一章", "上章", "下章", "前文", "后文", "伏笔", "读者", "任务描述"]
+  },
+  "repeat": {
+    "long_sentence_min_visible_chars": 12,
+    "long_sentence_min_occurrences": 3,
+    "adjacent_line_min_visible_chars": 8
+  },
+  "truncate": {
+    "allowed_ending_punct": ["。", "！", "？", "…", "”", "」"]
+  },
+  "placeholder_refusal": {
+    "blocking": [
+      "作为(一个)?(AI|人工智能|大?语言模型)[^，。]{0,20}(无法|不能|抱歉|很抱歉)",
+      "(此处|以下)[^，。]{0,10}(省略|待补|待续)",
+      "未完待续|TODO|占位符|placeholder",
+      "我(无法|不能)(继续写|生成|创作|续写|完成[^，。]{0,6}章)"
+    ],
+    "soft_dialogue_exempt": true
+  }
+}

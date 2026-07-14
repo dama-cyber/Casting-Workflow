@@ -1,0 +1,55 @@
+{
+  "_comment": "质量密度告警增量·方向 H（advisory 类）。纯正则/统计零模型，全 WARN 软信号，绝不 FAIL。不泄 corpus 字面。阈值热可调。⚠️ 启发式：原 check-ai-patterns.js 真值未抓回，基于中文写作常识+研究简报候选清单；全 WARN 误报代价极低、红线安全，后续抓真值可校准。",
+  "version": "advisory-v1",
+  "_qiaomu_E_calibration": "2026-07-10 据 data/_quality_baseline.json(11030篇) 标定：low_connectivity.min_per_1k_chars=2.0 时人类触发率 63.4%、p10=0.0→置0禁用(中文意合连接词本就少)；over_refined_short_para.max_ratio=0.20 时 42.6%→放宽到 p90=0.53(仍 WARN 但仅 10% 人类触发)。安全项(metaphor 1.17%/official 0%/micro 0%/fragment 7.2%)未收紧以免引入新误杀。",
+  "min_chars_total": 200,
+  "metrics": {
+    "fragment_short": {
+      "enabled": true,
+      "max_ratio": 0.18,
+      "short_sentence_max_visible_chars": 5
+    },
+    "parallelism": {
+      "enabled": true,
+      "min_consecutive": 3,
+      "patterns": [
+        "有的[^。！？]*有的[^。！？]*有的",
+        "一边[^。！？]*一边[^。！？]*一边"
+      ]
+    },
+    "micro_action": {
+      "enabled": true,
+      "terms": [
+        "眼皮一跳", "心口一沉", "胃里翻涌", "指尖一颤", "喉头一紧",
+        "脊背一凉", "太阳穴突突", "呼吸一滞", "心头一跳", "指尖微凉"
+      ],
+      "per_1k_chars": 4.0
+    },
+    "metaphor_density": {
+      "enabled": true,
+      "markers": ["像", "如", "似", "宛", "若", "仿佛", "犹如", "如同", "宛若"],
+      "max_per_1k_chars": 8.0
+    },
+    "low_connectivity": {
+      "enabled": true,
+      "connectors": [
+        "但是", "然而", "不过", "因为", "所以", "因此", "虽然", "尽管",
+        "于是", "接着", "而", "却", "可是", "偏偏", "话说回来"
+      ],
+      "min_per_1k_chars": 0.0
+    },
+    "over_refined_short_para": {
+      "enabled": true,
+      "max_ratio": 0.53,
+      "short_para_max_visible_chars": 10
+    },
+    "official_tone": {
+      "enabled": true,
+      "terms": [
+        "根据", "按照", "鉴于", "综上所述", "经研究决定", "予以",
+        "进一步", "进行", "开展", "本着"
+      ],
+      "per_1k_chars": 3.0
+    }
+  }
+}

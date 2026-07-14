@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "casting-workflow"
+version = "6.3.0"
+description = "熔铸仿写全术 — 20维指纹+双层互消+Bloom反查+零模型原创小说生成管线"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+dependencies = [
+    "jieba",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+[project.scripts]
+casting-workflow = "run_pipeline:main"
+
+[tool.setuptools.packages.find]
+include = ["tools*"]
+exclude = ["corpus*", "data*", "output*", "prompt*", "docs*", "_smoke*"]

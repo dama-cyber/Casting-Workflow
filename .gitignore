@@ -1,0 +1,31 @@
+# 虚拟环境
+.venv/
+
+# 语料库（用户自备，1.2GB，不应入库）
+corpus/
+
+# 缓存文件（语料依赖，通过 --rebuild-all-caches 重建，808MB）
+data/
+
+# 生成产物（临时，可重新生成）
+output/
+
+# 冒烟测试产物
+_smoke/
+
+# 设计文档（内部资料，不对外分发）
+docs/
+
+# Python缓存
+__pycache__/
+*.pyc
+
+# CodeBuddy
+.codebuddy/
+
+# WorkBuddy项目数据
+.workbuddy/
+
+# 系统文件
+Thumbs.db
+.DS_Store
